@@ -1,7 +1,15 @@
-﻿using OpenCvSharp;
+﻿using System.Drawing;
+using OpenCvSharp;
+using OpenCvSharp.Extensions;
+using Classes;
 
-var img = new Mat(new OpenCvSharp.Size(256, 256), MatType.CV_8UC3, new Scalar(35, 123, 254));
+string srcFileName = "Color/Lenna.bmp";
 
-Cv2.ImShow("Image", img);
+Mat img = new Mat(srcFileName);
+ImageProcess src = new ImageProcess(new Bitmap(srcFileName));
 
-Console.ReadLine();
+while (true) {
+    Cv2.ImShow("Image", img);
+    Cv2.ImShow("Bitmap", BitmapConverter.ToMat(src.GetSrcBitmap()));
+    Cv2.WaitKey(0);
+}

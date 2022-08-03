@@ -7,4 +7,4 @@ build_property.InvariantGlobalization =
 build_property.PlatformNeutralAssembly = 
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = OpenCVSharp_test
-build_property.ProjectDir = C:\Users\shun2\source\repos\OpenCVSharp_test\OpenCVSharp_test\
+build_property.ProjectDir = C:\Users\shun2\github\github_cv\OpenCVSharp_test\OpenCVSharp_test\
