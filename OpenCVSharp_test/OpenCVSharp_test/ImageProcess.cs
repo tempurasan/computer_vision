@@ -73,33 +73,34 @@ namespace Classes {
                 }
             }
 
-            //StreamWriter writer = new StreamWriter("test.csv");
-            //foreach (int item in hist)
-            //    writer.WriteLine(item);
-            //writer.Close();
-
             int th = 0;
             float max = 0;
 
-            for(int i = 1; i< hist.Length; i++) {
-                int[] a1 = new int[i];
-                int[] a2 = new int[hist.Length - i];
+            for (int i = 1; i < hist.Length; i++) {
+                int sum1 = 0;
+                int sum2 = 0;
+                int w1 = 0;
+                int w2 = 0;
 
-                Array.Copy(hist, a1, i);
-                Array.Copy(hist, i, a2, 0, hist.Length - i);
+                float ave1, ave2;
 
-                int sum1 = a1.Sum();
-                int sum2 = a2.Sum();
+                for(int j = 0; j < i; j++) {
+                    w1 += hist[j];
+                    sum1 += hist[j] * j;
+                }
+                ave1 = (float)sum1 / (float)w1;
 
-                //float ave1 = (float)a1.Average();
-                //float ave2 = (float)a2.Average();
-                float ave1 = (float)sum1 / (float)a1.Length;
-                float ave2 = (float)sum2 / (float)a2.Length;
+                for (int j = i; j < hist.Length; j++) {
+                    w2 += hist[j];
+                    sum2 += hist[j] * j;
+                }
+                ave2 = (float)sum2 / (float)w2;
 
-                float temp = (float)(sum1 * sum1) * (ave1 - ave2) * (ave1 - ave2);
+                float temp = (float)(w1 * w2) * ((ave1 - ave2) * (ave1 - ave2));
 
-                if(temp > max) {
+                if (temp > max) {
                     max = temp;
+                    Console.WriteLine("{0},{1}",temp, i);
                     th = i;
                 }
             }
@@ -164,7 +165,6 @@ namespace Classes {
 
             return c;
         }
-
         public Bitmap GetSrcBitmap() {
             return src;
         }
