@@ -9,14 +9,12 @@ namespace Classes {
         private BitmapData srcBirmapData;
         private byte[] srcpixels;
 
-
         public ImageProcess(Bitmap src) {
             this.src = src;
             srcBirmapData = src.LockBits(new Rectangle(0, 0, src.Width, src.Height), ImageLockMode.WriteOnly, src.PixelFormat);
             srcpixels = new byte[srcBirmapData.Stride * src.Height];
             Marshal.Copy(srcBirmapData.Scan0, srcpixels, 0, srcpixels.Length);
             src.UnlockBits(srcBirmapData);
-
         }
 
         public Bitmap ToGrayScale() {
