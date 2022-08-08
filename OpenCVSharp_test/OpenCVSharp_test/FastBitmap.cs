@@ -11,8 +11,8 @@ namespace Classes {
     public class FastBitmap {
         private Bitmap src;
         private byte[] srcpixels;
-        private int width { get; }
-        private int height { get; }
+        private int width;
+        private int height;
         private int Stride;
 
         public int Height
@@ -39,9 +39,9 @@ namespace Classes {
         public Color GetPixel(int x, int y) {
             Color c;
             int position = x * 3 + Stride * y;
-            byte r = srcpixels[position + 0];
+            byte b = srcpixels[position + 0];
             byte g = srcpixels[position + 1];
-            byte b = srcpixels[position + 2];
+            byte r = srcpixels[position + 2];
 
             c = Color.FromArgb(r, g, b);
 
@@ -50,9 +50,9 @@ namespace Classes {
 
         public void SetPixel(int x, int y, Color c) {
             int position = x * 3 + Stride * y;
-            srcpixels[position + 0] = (byte)c.R;
+            srcpixels[position + 0] = (byte)c.B;
             srcpixels[position + 1] = (byte)c.G;
-            srcpixels[position + 2] = (byte)c.B;
+            srcpixels[position + 2] = (byte)c.R;
         }
 
         public Bitmap ToBitmap() {
